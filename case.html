@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Opener Simulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .button:disabled {
+            background-color: #a0a0a0;
+            cursor: not-allowed;
+        }
+        .case {
+            width: 400px;
+            height: 120px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .roulette {
+            display: flex;
+            position: absolute;
+            left: 0;
+            transition: transform 4s cubic-bezier(0.1, 0.57, 0.1, 1);
+        }
+        .item {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        .indicator {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button class="button" onclick="openCase()" id="openButton">Open Case</button>
+    <div class="case">
+        <div class="indicator"></div>
+        <div class="roulette" id="roulette"></div>
+    </div>
+    <audio id="openSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    
+    <script>
+        const items = [
+    { name: "Common Knife", img: "knife.png" },
+    { name: "Rare Pistol", img: "pistol.png" },
+    { name: "Epic Sniper", img: "sniper.png" },
+    { name: "Legendary Rifle", img: "rifle.png" }
+];
+const probabilities = [0.5, 0.3, 0.15, 0.05];
+
+function openCase() {
+    // Disable the button to prevent multiple clicks during the animation
+    let openButton = document.getElementById("openButton");
+    openButton.disabled = true;
+
+    // Select the winning item based on the probabilities
+    let random = Math.random();
+    let cumulative = 0;
+    let selectedIndex = 0;
+    for (let i = 0; i < probabilities.length; i++) {
+        cumulative += probabilities[i];
+        if (random < cumulative) {
+            selectedIndex = i;
+            break;
+        }
+    }
+
+    let caseElement = document.getElementById("roulette");
+    let sound = document.getElementById("openSound");
+
+    // Clear any previous items
+    caseElement.innerHTML = "";
+    caseElement.style.transition = "none";
+    caseElement.style.transform = "translateX(0)";
+
+    // Add items in a loop for the roulette effect
+    let cycleItems = [];
+    for (let i = 0; i < 30; i++) {
+        let itemIndex = Math.floor(Math.random() * items.length);
+        let div = document.createElement("div");
+        div.className = "item";
+        let img = document.createElement("img");
+        img.src = items[itemIndex].img;
+        div.appendChild(img);
+        caseElement.appendChild(div);
+        cycleItems.push(div);
+    }
+
+    // Add the winning item
+    let winningItem = document.createElement("div");
+    winningItem.className = "item";
+    let winImg = document.createElement("img");
+    winImg.src = items[selectedIndex].img;
+    winningItem.appendChild(winImg);
+    caseElement.appendChild(winningItem);
+    cycleItems.push(winningItem);
+
+    // Add additional items after the winning one for continued animation effect
+    for (let i = 0; i < 5; i++) {
+        let itemIndex = Math.floor(Math.random() * items.length);
+        let div = document.createElement("div");
+        div.className = "item";
+        let img = document.createElement("img");
+        img.src = items[itemIndex].img;
+        div.appendChild(img);
+        caseElement.appendChild(div);
+    }
+
+    // Play the sound
+    sound.play();
+
+    // Now animate the roulette to the winning position
+    let totalWidth = cycleItems.length * 100;
+    let winningPosition = totalWidth - 250;  // Position the winning item
+    setTimeout(() => {
+        caseElement.style.transition = "transform 4s cubic-bezier(0.1, 0.57, 0.1, 1)";
+        caseElement.style.transform = `translateX(-${winningPosition}px)`;
+    }, 100);
+
+    // Reset after animation completes
+    setTimeout(() => {
+        caseElement.style.transition = "none";
+        caseElement.innerHTML = "";
+        openButton.disabled = false;  // Re-enable the button
+    }, 4500);
+}
+
+    </script>
+</body>
+</html>
