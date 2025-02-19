@@ -87,21 +87,79 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Caracteristici (Features) */
+/* ======= CARACTERISTICI (FEATURES) ======= */
 .features {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr; /* Un singur box pe rând */
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
+    padding: 0 20px;
+    justify-items: center;
 }
 
 .feature-box {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    max-width: 300px;
+    background: rgba(169, 169, 169, 0.2); /* Gri transparent */
+    padding: 30px; /* Padding suplimentar pentru mai mult spațiu */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Umbră subtilă */
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Lățime maximă pentru box */
+    transition: box-shadow 0.3s ease;
 }
+
+.feature-box:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Umbra devine mai intensă pe hover */
+}
+
+.feature-box h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px; /* Mai mult spațiu între titlu și text */
+    font-weight: bold;
+}
+
+.feature-box p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px; /* Mai mult spațiu între descriere și restul contentului */
+}
+
+
+/* ======= DESPRE ======= */
+section.about {
+    background: linear-gradient(135deg, #f0f0f0, #d6d6d6); /* Gradient gri deschis */
+    padding: 40px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.about a {
+    color: #4CAF50; /* Culoare verde pentru link-uri */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.about a:hover {
+    color: #333;
+}
+    
 
 /* ======= VIDEO SECTION ======= */
 .video-section {
@@ -229,79 +287,106 @@ a:hover {
 
 /* ======= CONTACT PAGE ======= */
 .contact-section {
-    background: linear-gradient(135deg, #f0f0f0, #d6d6d6); /* Gradient gri deschis */
-    padding: 40px;
+    background: #f9fafb; /* Culoare de fundal albă, foarte deschisă */
+    padding: 40px 20px;
     border-radius: 10px;
-    max-width: 800px;
+    max-width: 900px;
     margin: 20px auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .contact-section h2 {
-    font-size: 2rem;
-    color: #111827;
+    font-size: 2.2rem;
+    color: #333;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .contact-section p {
-    font-size: 1rem;
-    color: #555;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
 }
 
 .contact-section a {
     color: #0066cc;
     font-weight: bold;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .contact-section a:hover {
-    color: #facc15; /* Galben */
+    color: #ffcc00;
+    transform: scale(1.05);
 }
 
+/* Listă de rețele sociale */
 .contact-section ul {
     list-style: none;
     padding: 0;
-    margin-top: 10px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .contact-section ul li {
-    margin: 10px 0;
+    font-size: 1.2rem;
 }
 
 .contact-section ul li a {
-    font-size: 1.1rem;
     color: #0066cc;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .contact-section ul li a:hover {
-    color: #facc15;
+    color: #ffcc00;
+    transform: scale(1.1);
 }
 
+/* ======= FORMULAR DE CONTACT ======= */
 .contact-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 20px;
-    text-align: left;
+    margin-top: 30px;
+    align-items: center;
 }
 
 .contact-form label {
     font-size: 1rem;
     color: #333;
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
 }
 
-.contact-form input, .contact-form textarea {
-    padding: 10px;
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-top: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.4);
+    outline: none;
 }
 
 .contact-form textarea {
     resize: vertical;
+    height: 150px;
 }
 
 .contact-form button {
@@ -309,34 +394,60 @@ a:hover {
     color: white;
     padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 50%;
+    margin-top: 20px;
 }
 
 .contact-form button:hover {
-    background-color: #004c99;
+    background-color: #005bb5;
+    transform: scale(1.05);
 }
 
 
 /* ======= FOOTER ======= */
 footer {
-    background-color: #111827; /* Negru-gri */
+    background-color: #111827;
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 20px 0;
     font-size: 14px;
+    margin-top: 40px;
 }
 
-/* ======= RESPONSIVE DESIGN ======= */
+footer a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ======= MOBILE RESPONSIVENESS ======= */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
+    .contact-section {
+        padding: 30px 15px;
     }
-    
-    main {
-        padding: 20px;
+
+    .contact-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .contact-form button {
+        width: 80%;
+    }
+
+    .contact-section ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-section ul li {
+        font-size: 1rem;
     }
 }
