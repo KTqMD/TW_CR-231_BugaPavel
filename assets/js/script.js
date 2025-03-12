@@ -1,30 +1,22 @@
-document.getElementById("openButton").addEventListener("click", function() {
-    let skinImage = document.getElementById("skinImage");
-    let images = [
-        "../assets/img/skin1.png",
-        "../assets/img/skin2.png",
-        "../assets/img/skin3.png",
-        "../assets/img/skin4.png",
-        "../assets/img/skin5.png",
-        "../assets/img/skin6.png",
-        "../assets/img/skin7.png",
-        "../assets/img/skin8.png",
-        "../assets/img/skin9.png"
-    ];
+function openCase() {
+    const items = document.querySelectorAll(".case-item"); // Selectăm imaginile din HTML
+    let index = 0;
 
-    // Resetează imaginea și ascunde conținutul anterior
-    skinImage.style.display = "none";
+    // Facem toate imaginile invizibile
+    items.forEach(img => img.style.display = "none");
 
-    let counter = 0;
-    let randomStop = Math.floor(Math.random() * images.length);
-    let interval = setInterval(() => {
-        skinImage.src = images[counter % images.length];
-        skinImage.style.display = "block";
-        counter++;
+    // 1️⃣ Animația ruletei
+    const interval = setInterval(() => {
+        items.forEach(img => img.style.display = "none"); // Ascundem toate
+        items[index].style.display = "block"; // Afișăm imaginea curentă
+        index = (index + 1) % items.length;
+    }, 100); // Schimbare rapidă a imaginilor
 
-        if (counter > randomStop + images.length * 2) {  // Rulăm de mai multe ori înainte să ne oprim
-            clearInterval(interval);
-            skinImage.src = images[randomStop];  // Se oprește la un skin aleatoriu
-        }
-    }, 150);
-});
+    // 2️⃣ Se oprește pe un element aleatoriu
+    setTimeout(() => {
+        clearInterval(interval);
+        const finalIndex = Math.floor(Math.random() * items.length);
+        items.forEach(img => img.style.display = "none");
+        items[finalIndex].style.display = "block";
+    }, 3000); // Se oprește după 3 secunde
+}

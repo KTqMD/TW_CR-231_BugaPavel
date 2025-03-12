@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Opener Simulator</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <script defer src="../assets/js/script.js"></script> 
 </head>
 <body>
-    <header> 
+    <header>
         <h1>CS2 Skin Lover</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Acasă</a></li>
+                <li><a href="../index.html">Acasă</a></li>
                 <li><a href="skins.html">Skin-uri</a></li>
                 <li><a href="history.html">Istorie</a></li>
                 <li><a href="about.html">Despre</a></li> 
@@ -24,9 +25,20 @@
     <main>
         <section class="case-opener">
             <h2>Simulează Deschiderea unei Capsule</h2>
-            <button class="button" id="openButton">Deschide Capsula</button>
-            <div class="case" id="case">
-                <img id="skinImage" class="skin-image" src="" alt="Skin Câștigat">
+            <button class="button" id="openButton" onclick="openCase()">Deschide Capsula</button>
+            <div class="case">
+                <div class="indicator"></div>
+                <div class="roulette" id="roulette">
+                    <img src="../assets/img/skin1.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin2.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin3.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin4.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin5.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin6.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin7.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin8.png" class="case-item" style="display: none;">
+                    <img src="../assets/img/skin9.png" class="case-item" style="display: none;">
+                </div>
             </div>
         </section>
     </main>
@@ -34,7 +46,5 @@
     <footer>
         <p>&copy; CR-231 Buga Pavel</p>
     </footer>
-
-    <script src="../assets/js/script.js"></script>
 </body>
 </html>
