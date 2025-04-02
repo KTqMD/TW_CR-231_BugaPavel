@@ -11,12 +11,12 @@
         <h1>CS2 Skin Lover</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Acasă</a></li>
-                <li><a href="nav/skins.html">Skin-uri</a></li>
-                <li><a href="nav/history.html">Istorie</a></li>
-                <li><a href="nav/about.html">Despre</a></li> 
-                <li><a href="nav/contact.html">Contact</a></li>
-                <li><a href="nav/case-opener.html">Cutii</a></li>
+                <li><a href="index.php">Acasă</a></li>
+                <li><a href="nav/skins.php">Skin-uri</a></li>
+                <li><a href="nav/history.php">Istorie</a></li>
+                <li><a href="nav/about.php">Despre</a></li> 
+                <li><a href="nav/contact.php">Contact</a></li>
+                <li><a href="nav/case-opener.php">Cutii</a></li>
             </ul>
         </nav>
     </header>
