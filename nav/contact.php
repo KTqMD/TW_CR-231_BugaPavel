@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/trimite.js"></script>
 </head>
 <body>
     <header> 
@@ -48,6 +50,5 @@
         <p>&copy; CR-231 Buga Pavel</p>
     </footer>
 
-    <script src="../assets/js/trimite.js"></script>
 </body>
 </html>

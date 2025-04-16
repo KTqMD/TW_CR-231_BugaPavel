@@ -1,17 +1,20 @@
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Previne trimiterea implicită a formularului
+$(document).ready(function () {
+    $("#contactForm").on("submit", function (e) {
+        e.preventDefault();
+        console.log("Form submitted via AJAX");
 
-    let formData = new FormData(this);
-
-    fetch("trimite.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("responseMessage").textContent = data.message;
-    })
-    .catch(error => {
-        console.error("Eroare:", error);
+        $.ajax({
+            url: "trimite.php",
+            type: "POST",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (response) {
+                $("#responseMessage").text(response.message);
+            },
+            error: function (xhr, status, error) {
+                $("#responseMessage").text("Eroare la trimitere.");
+                console.error("AJAX error:", xhr.responseText);
+            }
+        });
     });
 });
